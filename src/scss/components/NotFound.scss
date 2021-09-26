@@ -1,0 +1,49 @@
+@import './../base';
+
+div.container.not-found {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span.oops {
+        height: max-content;
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+
+        &::first-letter {
+            color: $color-button;
+        }
+
+    }
+
+    button {
+        margin-top: 1rem;
+        border: 1px solid $color-button;
+        border-radius: 12px;
+        background-color: rgba($color: $color-button, $alpha: 1.0);
+
+        &:hover {
+            background-color: $color-buttonLight;
+            border-color: $color-buttonLight;
+        }
+
+        &:focus {
+            box-shadow: 0 0 1px .2rem rgba($color: $color-buttonLight, $alpha: .27);
+        }
+
+        a.nav-link {
+            color: $color-white;
+            padding: .2rem .5rem;
+            font-size: 15px;
+
+            &:focus {
+                outline: none;
+                color: $color-white;
+            }
+        }
+    }
+}

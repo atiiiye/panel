@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+
+//componets
+import NotFound from './components/NotFound'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import Header from './components/Header'
+
+//Routes
+import PrivateRoute from "./Routes/PrivateRoute";
+import PublicRoute from "./Routes/PublicRoute";
+
+//packages
+import { Switch } from "react-router-dom";
+
+//contextes
+import ThemeContext from "./Contextes/ThemeContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <ThemeContext>
+    <Header>
+      <Switch>
+
+        <PublicRoute exact restricted={false} path="/dashboard" component={Dashboard} />
+
+        <PublicRoute exact restricted={false} path="/" component={Login} />
+
+        <PublicRoute exact restricted={false} path="/404" component={NotFound} />
+
+        <PublicRoute restricted={false} path="" component={NotFound} />
+
+
+      </Switch>
+    </Header>
+    // </ThemeContext>
   );
 }
 
