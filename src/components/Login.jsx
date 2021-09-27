@@ -3,6 +3,9 @@ import React from 'react';
 //packages
 import { Stack, DefaultButton, Label, TextField, Spinner } from "@fluentui/react";
 
+//components
+import Header from './Header'
+
 const Login = () => {
 
     const style = {
@@ -14,29 +17,53 @@ const Login = () => {
         justifyContent: "center"
     }
 
+    const styleInput = {
+        background: "#f1f1f1",
+        borderRadius: "9px",
+        marginBottom: "2rem",
+        height: "40px",
+        width: "300px"
+    }
+
+    const styleLabel = {
+        marginBottom: "1rem",
+        width: "310px"
+
+    }
+
+    const buttonStyle = {
+        marginTop: "2rem", background: "#0078D4", color: "#f1f1f1", border: "0", width: "310px",
+        height: "40px",
+    }
+
     return (
         <div className="container" style={style}>
-
+            <Header />
             <div style={{
-                width: "600px", padding: '2rem', display: "flex", alignItems: "center",
+                width: "600px",
+                padding: '2rem',
+                display: "flex",
+                alignItems: "center",
                 flexDirection: "column",
                 justifyContent: "center",
-                background: "#88cbfa",
+                background: "#DAEBF7",
                 borderRadius: "7px"
-
             }}>
-                <Label> user name</Label>
+                <Label style={styleLabel}>Username</Label>
                 <TextField
                     placeholder="User name"
                     type="text"
-                />
+                    borderless
+                    styles={styleInput} />
 
-                <Label>password</Label>
+                <Label style={styleLabel}>Password</Label>
                 <TextField
                     type="password"
-                    placeholder="Password" />
+                    placeholder="Password"
+                    borderless
+                    styles={styleInput} />
 
-                <DefaultButton style={{ marginTop: "2rem" }}>Login</DefaultButton>
+                <DefaultButton style={buttonStyle}>LOGIN</DefaultButton>
             </div>
         </div>
     );

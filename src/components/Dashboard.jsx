@@ -6,6 +6,8 @@ import { useTable } from 'react-table'
 import styled from 'styled-components'
 import makeData from './makeData'
 
+//components
+import Header from './Header'
 
 const Dashboard = () => {
 
@@ -158,30 +160,34 @@ const Dashboard = () => {
 
 
     return (
-        <div className="container" style={style}>
+        <React.Fragment>
+            <Header />
 
-            <Styles>
-                <Table columns={columns} data={dataTable} />
-            </Styles>
+            <div className="container" style={style}>
 
-            <PieChart width={400} height={400}>
-                <Pie
-                    data={data}
-                    cx={200}
-                    cy={200}
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-            </PieChart>
-        </div>
+                <Styles>
+                    <Table columns={columns} data={dataTable} />
+                </Styles>
+
+                <PieChart width={400} height={400}>
+                    <Pie
+                        data={data}
+                        cx={200}
+                        cy={200}
+                        labelLine={false}
+                        label={renderCustomizedLabel}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                    >
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`}
+                                fill={COLORS[index % COLORS.length]} />
+                        ))}
+                    </Pie>
+                </PieChart>
+            </div>
+        </React.Fragment>
 
     );
 }

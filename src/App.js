@@ -19,20 +19,20 @@ import ThemeContext from "./Contextes/ThemeContext";
 function App() {
   return (
     // <ThemeContext>
-    <Header>
-      <Switch>
+    // <Header>
+    <Switch>
 
-        <PublicRoute exact restricted={false} path="/dashboard" component={Dashboard} />
+      <PublicRoute exact restricted={false} path="/dashboard" component={Dashboard} />
 
-        <PublicRoute exact restricted={false} path="/" component={Login} />
+      <PublicRoute exact restricted={false} path="/" component={Login} />
 
-        <PublicRoute exact restricted={false} path="/404" component={NotFound} />
+      <PublicRoute exact restricted={false} path="/404" component={NotFound} />
 
-        <PublicRoute restricted={false} path="" component={NotFound} />
+      <PublicRoute restricted={false} path="" component={NotFound} />
 
 
-      </Switch>
-    </Header>
+    </Switch>
+    // </Header>
     // </ThemeContext>
   );
 }
