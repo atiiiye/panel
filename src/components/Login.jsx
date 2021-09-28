@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //packages
 import { Stack, DefaultButton, Label, TextField, Spinner } from "@fluentui/react";
@@ -6,7 +6,13 @@ import { Stack, DefaultButton, Label, TextField, Spinner } from "@fluentui/react
 //components
 import Header from './Header'
 
+//services
+import { LoginApi } from './../Services/authServices'
+
 const Login = () => {
+
+    const [Email, setEmail] = useState("eve.holt@reqres.in")
+    const [Password, setPassword] = useState("cityslicka")
 
     const style = {
         width: "100%",
@@ -36,6 +42,17 @@ const Login = () => {
         height: "40px",
     }
 
+
+    const loginService = async () => {
+        try {
+
+            const { data } = await LoginApi()
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="container" style={style}>
             <Header />
@@ -49,20 +66,25 @@ const Login = () => {
                 background: "#DAEBF7",
                 borderRadius: "7px"
             }}>
-                <Label style={styleLabel}>Username</Label>
+                <Label style={styleLabel}>Email</Label>
                 <TextField
-                    placeholder="User name"
+                    placeholder="Email"
                     type="text"
                     borderless
-                    styles={styleInput} />
+                    styles={styleInput}
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
                 <Label style={styleLabel}>Password</Label>
                 <TextField
                     type="password"
                     placeholder="Password"
                     borderless
-                    styles={styleInput} />
-
+                    styles={styleInput}
+                    value={Password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
                 <DefaultButton style={buttonStyle}>LOGIN</DefaultButton>
             </div>
         </div>

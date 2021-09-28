@@ -12,11 +12,11 @@ class NotFound extends Component {
       <React.Fragment>
         <div className="container not-found">
           <span className="oops h1">404</span>
-          <h1 className="h1">متاسفیم!</h1>
-          <h1 className="h1">چنین صفحه ای پیدا نشد</h1>
+          <h1 className="h1">Oops!</h1>
+          <h1 className="h1">Not Found Page!</h1>
           <button variant="none">
             <NavLink className="nav-link" to="/">
-              بازگشت به صفحه اصلی
+              Back to Home Page
             </NavLink>
           </button>
         </div>
