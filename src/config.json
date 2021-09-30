@@ -1,3 +1,4 @@
 {
-    "Login":"https://reqres.in/api/login"
+    "Login":"https://reqres.in/api/login",
+    "UsersList":"https://reqres.in/api/users"
 }

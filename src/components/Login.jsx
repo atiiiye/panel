@@ -8,6 +8,7 @@ import Header from './Header'
 
 //services
 import { LoginApi } from './../Services/authServices'
+import { LoginUtil } from '../common';
 
 const Login = () => {
 
@@ -45,9 +46,9 @@ const Login = () => {
 
     const loginService = async () => {
         try {
-
             const { data } = await LoginApi()
             console.log(data);
+            LoginUtil(data.token)
         } catch (error) {
             console.log(error);
         }
@@ -56,37 +57,42 @@ const Login = () => {
     return (
         <div className="container" style={style}>
             <Header />
-            <div style={{
-                width: "600px",
-                padding: '2rem',
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                background: "#DAEBF7",
-                borderRadius: "7px"
-            }}>
-                <Label style={styleLabel}>Email</Label>
-                <TextField
-                    placeholder="Email"
-                    type="text"
-                    borderless
-                    styles={styleInput}
-                    value={Email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+            <Stack>
 
-                <Label style={styleLabel}>Password</Label>
-                <TextField
-                    type="password"
-                    placeholder="Password"
-                    borderless
-                    styles={styleInput}
-                    value={Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <DefaultButton style={buttonStyle}>LOGIN</DefaultButton>
-            </div>
+
+                <div style={{
+                    width: "600px",
+                    padding: '2rem',
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    background: "#DAEBF7",
+                    borderRadius: "7px"
+                }}>
+                    <Label style={styleLabel}>Email</Label>
+                    <TextField
+                        placeholder="Email"
+                        type="text"
+                        borderless
+                        styles={styleInput}
+                        value={Email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <Label style={styleLabel}>Password</Label>
+                    <TextField
+                        type="password"
+                        placeholder="Password"
+                        borderless
+                        styles={styleInput}
+                        value={Password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <DefaultButton style={buttonStyle} onClick={loginService}>LOGIN</DefaultButton>
+                </div>
+            </Stack>
+
         </div>
     );
 }

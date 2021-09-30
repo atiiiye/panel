@@ -4,11 +4,17 @@ import config from "./../config.json";
 
 
 export function LoginApi(email, password) {
-    return http.podt(
+    return http.post(
         config.Login,
         JSON.stringify({
             email,
             password
         })
+    )
+}
+
+export function UsersList() {
+    return http.get(
+        config.UsersList,
     )
 }
