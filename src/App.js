@@ -19,10 +19,9 @@ import ThemeContext from "./Contextes/ThemeContext";
 function App() {
   return (
     // <ThemeContext>
-    // <Header>
     <Switch>
 
-      <PublicRoute exact restricted={false} path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
       <PublicRoute exact restricted={false} path="/" component={Login} />
 
@@ -32,7 +31,6 @@ function App() {
 
 
     </Switch>
-    // </Header>
     // </ThemeContext>
   );
 }

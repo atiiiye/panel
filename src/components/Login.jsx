@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //packages
-import { Stack, DefaultButton, Label, TextField, Spinner } from "@fluentui/react";
+import { DefaultButton, Label, TextField } from "@fluentui/react";
+import { Redirect } from 'react-router-dom'
 
 //components
 import Header from './Header'
@@ -14,6 +15,7 @@ const Login = () => {
 
     const [Email, setEmail] = useState("eve.holt@reqres.in")
     const [Password, setPassword] = useState("cityslicka")
+    const [redirect, setRedirect] = useState(false)
 
     const style = {
         width: "100%",
@@ -44,22 +46,35 @@ const Login = () => {
     }
 
 
-    const loginService = async () => {
-        try {
-            const { data } = await LoginApi()
-            console.log(data);
-            LoginUtil(data.token)
-        } catch (error) {
-            console.log(error);
+    const handlesubmit = (event) => {
+        event.preventDefault()
+        if (Email && Password) {
+            console.info("form valid")
+            loginService()
+
+        } else {
+            console.error("form invalid")
         }
     }
 
+
+    const loginService = async () => {
+        console.log('login');
+        try {
+            const { data } = await LoginApi(Email, Password)
+            LoginUtil(data.token)
+            setRedirect(true)
+        } catch (error) {
+            console.log(error);
+        }
+        setRedirect(false)
+    }
+
+    if (redirect) return <Redirect to={{ pathname: "/dashboard" }} />
     return (
         <div className="container" style={style}>
             <Header />
-            <Stack>
-
-
+            <form onSubmit={handlesubmit}>
                 <div style={{
                     width: "600px",
                     padding: '2rem',
@@ -89,9 +104,12 @@ const Login = () => {
                         value={Password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <DefaultButton style={buttonStyle} onClick={loginService}>LOGIN</DefaultButton>
+                    <DefaultButton
+                        style={buttonStyle}
+                        type="submit"
+                    >LOGIN</DefaultButton>
                 </div>
-            </Stack>
+            </form>
 
         </div>
     );

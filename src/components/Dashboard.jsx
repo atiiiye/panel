@@ -6,6 +6,8 @@ import { useTable } from 'react-table'
 import styled from 'styled-components'
 import makeData from './makeData'
 
+
+
 //components
 import Header from './Header'
 
